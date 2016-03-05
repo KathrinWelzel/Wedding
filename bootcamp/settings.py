@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'bootcamp.tweets',
     'bootcamp.questions',
     'bootcamp.search',
+    'bootcamp.generic_follow',
 )
 
 MIDDLEWARE_CLASSES = (
