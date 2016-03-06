@@ -29,19 +29,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="{% url 'home' %}">Marcel & Kathrin</a>
+              <a class="navbar-brand" href="{% url 'home' %}">Bootcamp</a>
             </div>
             <div class="collapse navbar-collapse" id="menu">
               <ul class="nav navbar-nav">
                 <li>
-                  <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Nachrichten">
+                  <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
                     <span class="glyphicon glyphicon-bell"></span>
                   </a>
                 </li>
-                <li><a href="{% url 'feeds' %}">{% trans 'Beiträge' %}</a></li>
-                <li><a href="{% url 'articles' %}">{% trans 'Wissenswertes' %}</a></li>
+                <li><a href="{% url 'feeds' %}">{% trans 'Feed' %}</a></li>
+                <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
                 <li><a href="{% url 'questions' %}">{% trans 'Q&A' %}</a></li>
-                <li><a href="{% url 'network' %}">{% trans 'Gäste' %}</a></li>
+                <li><a href="{% url 'network' %}">{% trans 'Network' %}</a></li>
               </ul>
               {% if not hide_search %}
                 <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}">
@@ -61,7 +61,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
-                    <li><a href="{% url 'settings' %}">{% trans 'Account Einstellungen' %}</a></li>
+                    <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
                     <li class="divider"></li>
                     <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
                   </ul>

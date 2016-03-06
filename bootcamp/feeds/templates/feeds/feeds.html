@@ -14,20 +14,20 @@
     <div class="col-md-6 col-md-offset-3">
 
       <div class="page-header">
-        <button type="button" class="btn btn-primary pull-right btn-compose" title="{% trans 'Drück Ctrl + P um neuen Beitrag zu verfassen' %}">
-          <span class="glyphicon glyphicon-share-alt"></span> {% trans 'Neuen Beitrag verfassen' %}
+        <button type="button" class="btn btn-primary pull-right btn-compose" title="{% trans 'Press Ctrl + P to compose' %}">
+          <span class="glyphicon glyphicon-share-alt"></span> {% trans 'Compose' %}
         </button>
-        <h1>{% trans 'Beiträge' %}</h1>
+        <h1>{% trans 'Feed' %}</h1>
       </div>
 
       <div class="panel panel-default panel-feed">
         <div class="panel-heading">
-          <h3 class="panel-title">{% trans 'Letzter Beitrag' %}</h3>
+          <h3 class="panel-title">{% trans 'Latest posts' %}</h3>
         </div>
         <div class="panel-body">
 
           <div class="compose">
-            <h2>{% trans "Schreibe einen neuen Beitrag" %}</h2>
+            <h2>{% trans "Compose a new post" %}</h2>
             <form role="form" id="compose-form">
               {% csrf_token %}
               <input type="hidden" name="last_feed">
@@ -36,15 +36,15 @@
               </div>
               <div class="form-group">
                 <button type="button" class="btn btn-primary btn-post">
-                  <span class="glyphicon glyphicon-send"></span> {% trans 'Absenden' %}
+                  <span class="glyphicon glyphicon-send"></span> {% trans 'Post' %}
                 </button>
-                <button type="button" class="btn btn-default btn-cancel-compose">{% trans 'Abbrechen' %}</button>
+                <button type="button" class="btn btn-default btn-cancel-compose">{% trans 'Cancel' %}</button>
                 <span class="help-block help-count pull-right">255</span>
               </div>
             </form>
           </div>
           <div class="stream-update">
-            <a href="#"><span class="new-posts"></span> {% trans 'Neuer Beitrag' %}</a>
+            <a href="#"><span class="new-posts"></span> {% trans 'new posts' %}</a>
           </div>
           <ul class="stream">
             {% for feed in feeds %}

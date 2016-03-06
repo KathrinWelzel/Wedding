@@ -45,6 +45,7 @@ class Notification(models.Model):
     ACCEPTED_ANSWER = 'W'
     EDITED_ARTICLE = 'E'
     ALSO_COMMENTED = 'S'
+    FOLLOWED_USER = 'U'
     NOTIFICATION_TYPES = (
         (LIKED, 'Liked'),
         (COMMENTED, 'Commented'),
@@ -53,6 +54,7 @@ class Notification(models.Model):
         (ACCEPTED_ANSWER, 'Accepted Answer'),
         (EDITED_ARTICLE, 'Edited Article'),
         (ALSO_COMMENTED, 'Also Commented'),
+        (FOLLOWED_USER, 'Followed'),
         )
 
     _LIKED_TEMPLATE = '<a href="/{0}/">{1}</a> liked your post: <a href="/feeds/{2}/">{3}</a>'
@@ -62,6 +64,7 @@ class Notification(models.Model):
     _ACCEPTED_ANSWER_TEMPLATE = '<a href="/{0}/">{1}</a> accepted your answer: <a href="/questions/{2}/">{3}</a>'
     _EDITED_ARTICLE_TEMPLATE = '<a href="/{0}/">{1}</a> edited your article: <a href="/article/{2}/">{3}</a>'
     _ALSO_COMMENTED_TEMPLATE = '<a href="/{0}/">{1}</a> also commentend on the post: <a href="/feeds/{2}/">{3}</a>'
+    _FOLLOWED_USER_TEMPLATE = '<a href="/{0}/">{1}</a> now follows you.'
 
     from_user = models.ForeignKey(User, related_name='+')
     to_user = models.ForeignKey(User, related_name='+')
@@ -127,6 +130,11 @@ class Notification(models.Model):
                 escape(self.from_user.profile.get_screen_name()),
                 self.feed.pk,
                 escape(self.get_summary(self.feed.post))
+                )
+        elif self.notification_type == self.FOLLOWED_USER:
+            return self._FOLLOWED_USER_TEMPLATE.format(
+                escape(self.from_user.username),
+                escape(self.from_user.profile.get_screen_name())
                 )
         else:
             return 'Ooops! Something went wrong.'

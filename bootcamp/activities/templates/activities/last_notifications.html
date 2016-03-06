@@ -9,7 +9,7 @@
       <p><small>{{ notification.date|naturaltime }}</small></p>
     </li>
   {% empty %}
-    <li style="text-align: center">{% trans 'Du hast keine neue Nachrichten' %}</li>
+    <li style="text-align: center">{% trans 'You have no unread notification' %}</li>
   {% endfor %}
-    <li style="text-align: center"><a href="{% url 'notifications' %}">{% trans 'Alle Nachrichten' %}</a></li>
+    <li style="text-align: center"><a href="{% url 'notifications' %}">{% trans 'See all' %}</a></li>
 </ul>

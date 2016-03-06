@@ -17,12 +17,12 @@
         <form role="form" method="post" action="{% url 'send_message' %}" id="send">
           {% csrf_token %}
           <input type="hidden" name="to" value="{{ active }}">
-          <input class="form-control" type="text" name="message" placeholder="Schreib eine Nachricht..." maxlength="1000" autocomplete="off">
+          <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
         </form>
       </div>
     </li>
   </ul>
   {% else %}
-    <h4>Keine neuen Nachrichten!</h4>
+    <h4>Your inbox is empty!</h4>
   {% endif %}
 {% endblock container %}

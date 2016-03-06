@@ -4,6 +4,7 @@ PROJECT_DIR = Path(__file__).parent
 from decouple import config
 
 import dj_database_url
+import logging
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -41,6 +42,7 @@ INSTALLED_APPS = (
     'bootcamp.tweets',
     'bootcamp.questions',
     'bootcamp.search',
+    'bootcamp.generic_follow',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,4 +103,34 @@ LOGIN_REDIRECT_URL = '/feeds/'
 ALLOWED_SIGNUP_DOMAINS = ['*']
 
 FILE_UPLOAD_TEMP_DIR = '/tmp/'
-FILE_UPLOAD_PERMISSIONS = '0644'
+
+LOG_FILE = PROJECT_DIR.parent.parent.child('logs').child('django.log')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file1': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': LOG_FILE,
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['file1'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+    }
+}

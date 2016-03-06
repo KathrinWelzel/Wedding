@@ -68,3 +68,10 @@ staticfiles
 
 # Backup File
 *.bak
+
+bootcamp/activities/migrations/
+bootcamp/articles/migrations/
+bootcamp/feeds/migrations/
+bootcamp/questions/migrations/
+bootcamp/tweets/migrations/
+bootcamp/userauth/migrations/

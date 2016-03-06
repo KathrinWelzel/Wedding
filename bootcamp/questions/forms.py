@@ -2,17 +2,18 @@ from django import forms
 from bootcamp.questions.models import Question, Answer
 
 class QuestionForm(forms.ModelForm):
-    Titel = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), 
+    title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), 
         max_length=255)
-    Beschreibung = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}), 
+    description = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}), 
         max_length=2000)
-    Schlagworte = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
+    tags = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
         max_length=255,
-        required=False)
+        required=False,
+        help_text='Use spaces to separate the tags, such as "asp.net mvc5 javascript"')
 
     class Meta:
         model = Question
-        fields = ['Titel', 'Beschreibung', 'Schlagworte']
+        fields = ['title', 'description', 'tags']
 
 class AnswerForm(forms.ModelForm):
     question = forms.ModelChoiceField(widget=forms.HiddenInput(), queryset=Question.objects.all())
