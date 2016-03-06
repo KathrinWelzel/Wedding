@@ -1,3 +1,30 @@
+.options {
+  float: right;
+  text-align: center;
+}
+
+.options span {
+  /*display: block;*/
+  font-size: 1.2em;
+}
+
+.options span.follow {
+  font-size: 2em;
+  /*margin-top: .4em;*/
+}
+
+.follow {
+  cursor: pointer;
+}
+
+.follow:hover {
+  color: #f0ad4e;
+}
+
+.following {
+  color: #f0ad4e;
+}
+
 .profile {
   margin-top: 1em;
 }

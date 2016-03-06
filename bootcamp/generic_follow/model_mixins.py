@@ -40,6 +40,12 @@ class UserFollowMixin(object):
             target_object_id=item.pk
         ).exists()
 
+    # def calculate_followers(self):
+    #     favorites = Activity.objects.filter(activity_type=Activity.FAVORITE, question=self.pk).count()
+    #     self.favorites = favorites
+    #     self.save()
+    #     return self.favorites
+
 
 class TargetFollowMixin(object):
 

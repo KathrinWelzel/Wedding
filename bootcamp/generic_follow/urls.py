@@ -1,19 +1,5 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, include, url
 
-urlpatterns = patterns('',
-    url(
-        r'^follow/(?P<app>[^\/]+)/(?P<model>[^\/]+)/(?P<object_id>\d+)/$',
-        'bootcamp.generic_follow.views.follow_object',
-        name = 'follow_object'
-    ),
-    url(
-        r'^unfollow/(?P<app>[^\/]+)/(?P<model>[^\/]+)/(?P<object_id>\d+)/$',
-        'bootcamp.generic_follow.views.unfollow_object',
-        name = 'unfollow_object'
-    ),
-    url(
-        r'^toggle-follow/(?P<app>[^\/]+)/(?P<model>[^\/]+)/(?P<object_id>\d+)/$',
-        'bootcamp.generic_follow.views.toggle_follow_object',
-        name='toggle_follow_object'
-    )
+urlpatterns = patterns('bootcamp.generic_follow.views',
+        url(r'^user/$', 'follow_user', name='follow_user'),
 )
