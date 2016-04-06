@@ -56,7 +56,7 @@ docs/_build/
 *.sqlite3
 media/
 
-.env
+#.env
 
 venv_bootcamp/
 staticfiles
