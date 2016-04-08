@@ -1,0 +1,17 @@
+version: '2'
+networks:
+  backend:
+    external:
+      name: rpicaddy_backend
+
+
+services:
+  django:
+    build: .
+    restart: always
+    expose:
+      - 8000
+    networks:
+      - backend
+
+
