@@ -6,17 +6,15 @@ MAINTAINER Marcel Grossmann <whatever4711@gmail.com>
 # Local directory with project source
 ENV DOCKYARD_SRC=src
 # Directory in container for all project files
-ENV DOCKYARD_SRVHOME=/srv
+ENV DOCKYARD_SRVHOME=/usr/src
 # Directory in container for project source files
-ENV DOCKYARD_SRVPROJ=/srv/Wedding
+ENV DOCKYARD_SRVPROJ=/usr/src/Wedding
 ENV CERT=/etc/cert
 
 WORKDIR $DOCKYARD_SRVHOME
-RUN mkdir media static logs
+RUN mkdir media static logs 
 VOLUME ["$DOCKYARD_SRVHOME/media/", "$DOCKYARD_SRVHOME/logs/", "$CERT"]
 
-# Copy application source code to SRCDIR
-COPY $DOCKYARD_SRC $DOCKYARD_SRVPROJ
 # For DB
 RUN apt-get update && \
     apt-get -y install --no-install-recommends libpq-dev
@@ -24,8 +22,13 @@ RUN apt-get update && \
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY requirements.txt $DOCKYARD_SRVHOME
+
 # Install Python dependencies
-RUN pip --default-timeout=60 install -r $DOCKYARD_SRVPROJ/requirements.txt
+RUN pip3 --default-timeout=60 install -r $DOCKYARD_SRVHOME/requirements.txt
+
+# Copy application source code to SRCDIR
+COPY $DOCKYARD_SRC $DOCKYARD_SRVPROJ
 
 # Port to expose
 EXPOSE 8000

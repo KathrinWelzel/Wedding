@@ -1,11 +1,19 @@
 #!/bin/bash
+
+#if [ -z "$DECOUPLE_DB" ]; then
+#	sed "s|.*DATABASE_URL.*|DATABASE_URL=$DECOUPLE_DB|g" bootcamp/env > bootcamp/.env
+#else
+#	cp bootcamp/env bootcamp/.env
+#fi
+
+cp bootcamp/env bootcamp/.env
 python3 manage.py migrate auth
 python3 manage.py migrate                  # Apply database migrations
-python3 manage.py collectstatic --noinput  # Collect static files
+#python3 manage.py collectstatic --noinput  # Collect static files
 
 # Prepare log files and start outputting logs to stdout
-touch /srv/logs/gunicorn.log
-touch /srv/logs/access.log
+touch /usr/src/logs/gunicorn.log
+touch /usr/src/logs/access.log
 tail -n 0 -f /srv/logs/*.log &
 
 if [ -f "$CERT/cert.pem" ] && [ -f "$CERT/key.pem" ]; then

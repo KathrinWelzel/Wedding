@@ -18,11 +18,14 @@ services:
     depends_on:
       - db
     restart: always
-    expose:
-      - 8000
+    ports:
+      - 192.168.9.250:8000:8000
     networks:
       - backend
       - internal
+    environment:
+      - DECOUPLE_DB=postgresql://django:django@db/django
+
   db:
     image: whatever4711/rpi-postgresql
     restart: always
