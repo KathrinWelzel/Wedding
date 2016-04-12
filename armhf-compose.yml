@@ -3,15 +3,38 @@ networks:
   backend:
     external:
       name: rpicaddy_backend
+  internal:
+    driver: overlay
 
+volumes:
+  data:
+    driver: local
+  logs:
+    driver: local
 
 services:
   django:
     build: .
+    depends_on:
+      - db
     restart: always
     expose:
       - 8000
     networks:
       - backend
-
+      - internal
+  db:
+    image: whatever4711/rpi-postgresql
+    restart: always
+    expose:
+      - 5432
+    networks:
+      - internal
+    volumes:
+      - data:/var/services/data/postgres
+      - logs:/var/services/log/postgres
+    environment:
+      - PGUSER=django
+      - PGDB=django
+      - PGPASSWORD=django
 
