@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ ! -z "$DECOUPLE_DB" ]; then
 	sed "s|.*DATABASE_URL.*|DATABASE_URL=$DECOUPLE_DB|g" bootcamp/env > bootcamp/.env
