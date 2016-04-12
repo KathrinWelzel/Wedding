@@ -4,7 +4,7 @@ networks:
     external:
       name: rpicaddy_backend
   internal:
-    driver: overlay
+    driver: overlay 
 
 volumes:
   data:
@@ -19,7 +19,7 @@ services:
       - db
     restart: always
     ports:
-      - 192.168.9.250:8000:8000
+      - 8000:8000
     networks:
       - backend
       - internal
