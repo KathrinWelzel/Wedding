@@ -1,9 +1,12 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 
+admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'bootcamp.core.views.home', name='home'),
     url(r'^login', 'django.contrib.auth.views.login', {'template_name': 'core/cover.html'}, name='login'),
     url(r'^logout', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
@@ -18,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^questions/', include('bootcamp.questions.urls')),
     url(r'^articles/', include('bootcamp.articles.urls')),
     url(r'^messages/', include('bootcamp.tweets.urls')),
+    url(r'^photos/', include('bootcamp.photos.urls')),
     url(r'^notifications/$', 'bootcamp.activities.views.notifications', name='notifications'),
     url(r'^notifications/last/$', 'bootcamp.activities.views.last_notifications', name='last_notifications'),
     url(r'^notifications/check/$', 'bootcamp.activities.views.check_notifications', name='check_notifications'),

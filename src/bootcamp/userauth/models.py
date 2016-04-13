@@ -18,7 +18,7 @@ class Profile(models.Model):
         url = self.url
         if "http://" not in self.url and "https://" not in self.url and len(self.url) > 0:
             url = "http://" + str(self.url)
-        return url 
+        return url
 
     def get_picture(self):
         no_picture = 'http://trybootcamp.vitorfs.com/static/img/user.png'
@@ -55,8 +55,8 @@ class Profile(models.Model):
     def unotify_liked(self, feed):
         if self.user != feed.user:
             Notification.objects.filter(notification_type=Notification.LIKED,
-                from_user=self.user, 
-                to_user=feed.user, 
+                from_user=self.user,
+                to_user=feed.user,
                 feed=feed).delete()
 
     def notify_commented(self, feed):
@@ -82,36 +82,36 @@ class Profile(models.Model):
     def notify_favorited(self, question):
         if self.user != question.user:
             Notification(notification_type=Notification.FAVORITED,
-                from_user=self.user, 
-                to_user=question.user, 
+                from_user=self.user,
+                to_user=question.user,
                 question=question).save()
 
     def unotify_favorited(self, question):
         if self.user != question.user:
             Notification.objects.filter(notification_type=Notification.FAVORITED,
-                from_user=self.user, 
-                to_user=question.user, 
+                from_user=self.user,
+                to_user=question.user,
                 question=question).delete()
 
     def notify_answered(self, question):
         if self.user != question.user:
             Notification(notification_type=Notification.ANSWERED,
-                from_user=self.user, 
-                to_user=question.user, 
+                from_user=self.user,
+                to_user=question.user,
                 question=question).save()
-    
+
     def notify_accepted(self, answer):
         if self.user != answer.user:
             Notification(notification_type=Notification.ACCEPTED_ANSWER,
-                from_user=self.user, 
-                to_user=answer.user, 
+                from_user=self.user,
+                to_user=answer.user,
                 answer=answer).save()
-    
+
     def unotify_accepted(self, answer):
         if self.user != answer.user:
             Notification.objects.filter(notification_type=Notification.ACCEPTED_ANSWER,
-                from_user=self.user, 
-                to_user=answer.user, 
+                from_user=self.user,
+                to_user=answer.user,
                 answer=answer).delete()
 
 def create_user_profile(sender, instance, created, **kwargs):

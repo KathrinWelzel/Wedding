@@ -1,4 +1,4 @@
-Django==1.8.7
+Django==1.8.3
 dj-database-url==0.3.0
 dj-static==0.0.6
 gunicorn==19.3.0
@@ -8,4 +8,8 @@ Pillow==2.7.0
 Markdown==2.4.1
 bleach==1.4
 psycopg2==2.6.1
-django-photologue==3.4.1
+django-photologue==3.5
+pytz==2015.2
+django-sortedm2m==1.1.1
+ExifRead==2.1.2
+django-taggit==0.18.1

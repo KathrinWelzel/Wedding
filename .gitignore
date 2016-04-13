@@ -68,3 +68,5 @@ staticfiles
 
 # Backup File
 *.bak
+
+/src/media
