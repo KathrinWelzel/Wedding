@@ -14,7 +14,9 @@ volumes:
 
 services:
   django:
-    build: .
+    build: 
+      context: .
+      dockerfile: AlpineDockerfile
     depends_on:
       - db
     restart: always
