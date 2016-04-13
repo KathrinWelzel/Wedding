@@ -15,13 +15,6 @@ WORKDIR $DOCKYARD_SRVHOME
 RUN mkdir media static logs 
 VOLUME ["$DOCKYARD_SRVHOME/media/", "$DOCKYARD_SRVHOME/logs/", "$CERT"]
 
-# For DB
-#RUN apt-get update && \
-#    apt-get -y install --no-install-recommends libpq-dev
-# Clean Up
-#RUN apt-get clean && \
-#    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 RUN apk add --update python3 python3-dev libpq postgresql-dev gcc musl-dev linux-headers
 
 COPY requirements.txt $DOCKYARD_SRVHOME
