@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from photologue.models import Photo, Gallery
 from photologue.views import PhotoDetailView
 from .models import PhotoExtended
+from django.contrib.auth.decorators import login_required
+from bootcamp.decorators import ajax_required
 
 class PhotoForm(ModelForm):
     class Meta:
@@ -34,3 +36,31 @@ class AddGalleryView(FormView):
     def form_valid(self, form):
         new_gallery = form.save()
         return HttpResponseRedirect(self.get_success_url())
+
+
+# TODO: Remove logging, when done
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger("__name__")
+
+# TODO: accept posted picture
+@login_required
+@ajax_required
+def post(request):
+    logger.error(str(request.POST))
+    logger.error(str(request.user))
+    #print("test")
+    #last_feed = request.POST.get('last_feed')
+    user = request.user
+    csrf_token = str(csrf(request)['csrf_token'])
+    #feed = Feed()
+    #feed.user = user
+    post = request.POST['post']
+    post = post.strip()
+    #if len(post) > 0:
+    #    feed.post = post[:255]
+    #    feed.save()
+    #html = _html_feeds(last_feed, user, csrf_token)
+    return HttpResponseRedirect("/")

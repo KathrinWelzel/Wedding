@@ -21,7 +21,7 @@ def feeds(request):
         from_feed = feeds[0].id
     return render(request, 'feeds/feeds.html', {
         'feeds': feeds,
-        'from_feed': from_feed, 
+        'from_feed': from_feed,
         'page': 1,
         })
 
