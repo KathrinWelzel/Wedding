@@ -1,8 +1,9 @@
 @ECHO OFF
 
 Set name=docker
+Set gwip=192.168.56.1/24
 
-CALL :machine %name%
+CALL :machine %name %gwip%
 CALL :environment %name%
 CALL :start
 
@@ -20,8 +21,8 @@ del temp.txt
 
 ECHO.%output% | FIND /I "not exist" > Nul && (
   Echo Creating new machine %1
-  docker-machine create -d virtualbox %1
-  CALL :machine %1
+  docker-machine create -d virtualbox --virtualbox-hostonly-cidr %2 %1
+  CALL :machine %1 %2
 )
 ::|| (
 ::  Echo Did not find "not exist"
