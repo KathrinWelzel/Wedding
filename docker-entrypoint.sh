@@ -6,6 +6,7 @@ else
 	cp bootcamp/env bootcamp/.env
 fi
 
+python3 manage.py migrate photologue
 python3 manage.py migrate auth
 python3 manage.py migrate                  # Apply database migrations
 #python3 manage.py collectstatic --noinput  # Collect static files
